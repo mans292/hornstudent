@@ -1,0 +1,276 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/7e785d6b75.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+              publicKey: "haUbQ6BgswMBjfusB",
+            });
+        })();
+    </script>
+    <script type="text/javascript">
+        function showOverlay(message, success = true) {
+            const overlay = document.getElementById('overlay');
+            const box = document.getElementById('overlay-message');
+            const text = document.getElementById('overlay-text');
+
+            text.textContent = message;
+            text.className = success ? "text-black" : "text-red-600";
+            overlay.classList.remove('hidden');
+              setTimeout(() => {
+                box.classList.remove('opacity-0', 'scale-95');
+                box.classList.add('opacity-100', 'scale-100');
+            }, 50);
+        }
+
+        function hideOverlay() {
+            const overlay = document.getElementById('overlay');
+            const box = document.getElementById('overlay-message');
+
+         
+            box.classList.add('opacity-0', 'scale-95');
+            box.classList.remove('opacity-100', 'scale-100');
+            
+            
+            overlay.classList.add('hidden');
+            document.location.reload();
+    
+         
+        }
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const overlay = document.getElementById('overlay');
+                const box = document.getElementById('overlay-message');
+                const text = document.getElementById('overlay-text');
+
+                overlay.classList.remove('hidden');  
+                text.textContent = "Skickar...";      
+                box.classList.remove('opacity-0', 'scale-95');
+                box.classList.add('opacity-100', 'scale-100');
+                emailjs.sendForm('service_s2v838b', 'template_o722wf6', this)
+                    .then(() => {
+                        console.log('SUCCESS!');
+                            showOverlay("Meddelandet Skickades!", true);
+                    }, (error) => {
+                        console.log('FAILED...', error);
+                            showOverlay("❌ Misslyckades, försök igen.", false);
+                    });
+            });
+            document.getElementById('question-form').addEventListener('submit', function(event) {
+                const overlay = document.getElementById('overlay');
+                const box = document.getElementById('overlay-message');
+                const text = document.getElementById('overlay-text');
+
+                overlay.classList.remove('hidden');  
+                text.textContent = "Skickar...";      
+                box.classList.remove('opacity-0', 'scale-95');
+                box.classList.add('opacity-100', 'scale-100');
+                event.preventDefault();
+                emailjs.sendForm('service_s2v838b', 'template_twznc8k', this)
+                    .then(() => {
+                        console.log('SUCCESS!');
+                        showOverlay("Meddelandet skickades!", true);
+                    }, (error) => {
+                        console.log('FAILED...', error);
+                            showOverlay("❌ Misslyckades, försök igen.", false);
+                    });
+            });
+        }
+    </script>
+
+  </head>
+  <body>
+    <div class="h-full relative bg-white">
+      <header class="fixed top-0 left-0 w-full z-50 bg-black text-white">
+        <nav class="max-w-[85rem] w-full mx-auto px-4 flex items-center justify-between py-3">
+    
+          <a href="./index.html" class="text-md">hornhusetstudentskivor.se</a>
+
+      
+          <button id="burger" class="flex flex-col justify-center items-center gap-1 w-8 h-8 sm:hidden relative z-50">
+            <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+            <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+            <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+          </button>
+
+      
+          <div id="mobile-menu" class="fixed inset-0 bg-blue-200 flex flex-col items-center justify-center gap-8 text-2xl transform -translate-y-full transition-transform duration-800 sm:hidden">
+            <div class="items-center justify-center flex flex-col">
+              <a class="m-4" href="./index.html">Hem</a>
+              <a class="m-4" href="./om_oss.html">Om oss</a>
+              <a class="m-4" href="./faq.html">Frågor</a>
+              <a class="m-4" href="./lokalen.html">Lokalen</a>
+              <a class="m-4" href="./skivor.html">Tidigare skivor</a>
+            </div>
+            <button onclick="window.location.href='./boka.html'" class="p-4 absolute bottom-8 bg-black font-bold text-white rounded-4xl w-40">Boka här</button>
+          </div>
+
+
+          <div class="hidden sm:flex gap-5 text-gray-200">
+            <a href="./index.html">Hem</a>
+            <a href="./om_oss.html">Om oss</a>
+            <a href="./faq.html">Frågor</a>
+            <a href="./lokalen.html">Lokalen</a>
+            <a href="./skivor.html">Tidigare skivor</a>
+          </div>
+        </nav>
+      </header>
+
+      <script>
+          const burger = document.getElementById('burger');
+          const mobileMenu = document.getElementById('mobile-menu');
+          let open = false;
+
+          burger.addEventListener('click', () => {
+            open = !open;
+
+      
+            const [line1, line2, line3] = burger.querySelectorAll('span');
+            if (open) {
+              line1.style.transform = 'rotate(45deg) translateY(8.5px)';
+              line2.style.opacity = '0';
+              line3.style.transform = 'rotate(-45deg) translateY(-9px)';
+            } else {
+              line1.style.transform = 'rotate(0) translateY(0)';
+              line2.style.opacity = '1';
+              line3.style.transform = 'rotate(0) translateY(0)';
+            }
+
+
+            if (open) {
+              mobileMenu.style.transform = 'translateY(100%)';
+            } else {
+              mobileMenu.style.transform = 'translateY(-100%)';
+            }
+          });
+      </script>
+    <div class="bg-[url(./img/hornhuset-takbar.jpg)] bg-center bg-cover h-70 mt-8 flex justify-end items-end">
+        <h1 style="text-shadow: 3px -2px 0px red, 5px -3px 0px orange;" class="text-white text-[clamp(24px,5vw,32px)] font-bold me-4">HORNHUSET</h1>
+    </div>
+    <div class="flex flex-col justify-center mx-4">
+        <div class="lg:mx-64">
+            <h1 class="text-[clamp(24px,5vw,42px)] font-bold text-black mt-4">Vilka är vi?</h1>
+            <p class="text-lg">Vi är en av centrala Stockholms största nattklubbar, som arrangerat event och fest i 12 år. Vi erbjuder tre våningar fest, inklusive en takbar! Vi erbjuder en helhetsupplevelse, bra lokal, prisvärda paket och garanterat bra feststämning. Våra gäster får både ett roligare och billigare studentfirande via oss.</p>
+            <h1 class="text-[clamp(24px,5vw,42px)] font-bold text-black mt-4">Priser</h1>
+            <ul class="list-inside text-lg">
+                <li>Middagskuvert: 545kr st</li>
+                <li>Eftersläppsbiljetter 100kr st</li>
+                <li>Middagsgäster: 70-110 pers</li>
+                <li>Eftersläppsbiljetter: 220-350 st</li>
+            </ul>
+            
+        </div>
+        <div class="lg:mx-64">
+            <h1 style="line-height: normal;" class="text-[clamp(28px,5vw,42px)] font-bold mt-24" >Boka studentfest</h1>
+            <section class="bg-gray-50 rounded shadow-md text-start p-6 mb-32">
+                <p class="text-sm my-2">Fyll i intresseanmälan nedan så återkommer vi. OBS! Detta är en preliminär bokning, vi kommer att kontakta dig för mer information.</p>
+                <form id="contact-form" class="space-y-4">
+                    <div>
+                    <label for="date" class="block font-medium mb-1">Datum (Söndag-torsdag)</label>
+                    <input type="date" id="date" name="date" required
+                        class="w-full px-4 py-2 border border-black rounded focus:ring-2 focus:ring-blue-200 focus:outline-none">
+                    </div>
+
+               
+                    <div>
+                    <label for="name" class="block font-medium mb-1">Namn</label>
+                    <input type="text" id="name" name="name" placeholder="Ditt namn" required
+                        class="w-full px-4 py-2 border border-black rounded focus:ring-2 focus:ring-blue-200 focus:outline-none">
+                    </div>
+
+                
+                    <div>
+                    <label for="phone" class="block font-medium mb-1">Telefon</label>
+                    <input type="tel" id="phone" name="phone" placeholder="0701234567" required
+                        class="w-full px-4 py-2 border border-black rounded focus:ring-2 focus:ring-blue-200 focus:outline-none">
+                    </div>
+
+   
+                    <div>
+                    <label for="email" class="block font-medium mb-1">E-post</label>
+                    <input type="email" id="email" name="email" placeholder="exempel@mail.com" required
+                        class="w-full px-4 py-2 border border-black rounded focus:ring-2 focus:ring-blue-200 focus:outline-none">
+                    </div>
+
+             
+                    <div>
+                    <label for="school" class="block font-medium mb-1">Skola</label>
+                    <input type="text" id="school" name="school" placeholder="Din skola" required
+                        class="w-full px-4 py-2 border border-black rounded focus:ring-2 focus:ring-blue-200 focus:outline-none">
+                    </div>
+
+                    <div>
+                    <label for="message" class="block font-medium mb-1">Meddelande</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Skriv ditt meddelande här..." required
+                        class="w-full px-4 py-2 border border-black rounded focus:ring-2 focus:ring-blue-200 focus:outline-none"></textarea>
+                    </div>
+
+        
+                    <div class="text-start">
+                    <button type="submit"
+                        class="bg-black text-white px-6 py-2 rounded-2xl hover:bg-gray-700 transition-colors duration-300">
+                        Skicka
+                    </button>
+                    </div>
+
+                </form>
+            </section>
+        </div>
+    </div>
+    <div>
+        <div>
+            <section class="bg-blue-200 rounded shadow-md p-6 pb-32">
+                <p class="text-lg my-2 font-bold">Är du intresserad eller har du andra frågor?</p>
+                <form id="question-form" class="space-y-4">
+                    <div>
+                    <label for="name" class="block font-medium mb-1">Namn</label>
+                    <input type="text" id="name" name="name" placeholder="Ditt namn" required
+                        class="w-full px-4 py-2 border border-black rounded focus:ring-2 focus:ring-blue-200 focus:outline-none">
+                    </div>
+   
+                    <div>
+                    <label for="email" class="block font-medium mb-1">E-post</label>
+                    <input type="email" id="email" name="email" placeholder="exempel@mail.com" required
+                        class="w-full px-4 py-2 border border-black rounded focus:ring-2 focus:ring-blue-200 focus:outline-none">
+                    </div>
+                    <div>
+                    <label for="phone" class="block font-medium mb-1">Telefon</label>
+                    <input type="tel" id="phone" name="phone" placeholder="0701234567" required
+                        class="w-full px-4 py-2 border border-black rounded focus:ring-2 focus:ring-blue-200 focus:outline-none">
+                    </div>
+
+                    <div>
+                    <label for="message" class="block font-medium mb-1">Meddelande</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Skriv ditt meddelande här..." required
+                        class="w-full px-4 py-2 border border-black rounded focus:ring-2 focus:ring-blue-200 focus:outline-none"></textarea>
+                    </div>
+
+                    <div class="text-start">
+                    <button type="submit"
+                        class="bg-black text-white px-6 py-2 rounded-2xl hover:bg-gray-700 transition-colors duration-300">
+                        Skicka
+                    </button>
+                    </div>
+
+                </form>
+            </section>
+        </div>
+    </div>
+    </div>
+    <div id="overlay" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
+        <div id="overlay-message" class="bg-white rounded-lg shadow-lg p-8 text-center max-w-sm opacity-0 scale-95 transition-all duration-500">
+            <p class="text-lg font-medium" id="overlay-text"></p>
+            <button onclick="hideOverlay()" class="mt-4 bg-blue-200 text-black px-4 py-3 rounded-2xl hover:bg-blue-300">
+            Stäng
+            </button>
+        </div>
+    </div>
+  </body>
+</html>

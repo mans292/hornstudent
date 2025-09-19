@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/7e785d6b75.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="h-full relative bg-white">
+      <header class="fixed top-0 left-0 w-full z-50 bg-transparent text-white">
+        <nav class="max-w-[85rem] w-full mx-auto px-4 flex items-center justify-between py-3">
+    
+          <a href="./index.html" class="text-md">hornhusetstudentskivor.se</a>
+
+      
+          <button id="burger" class="flex flex-col justify-center items-center gap-1 w-8 h-8 sm:hidden relative z-50">
+            <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+            <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+            <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+          </button>
+
+      
+          <div id="mobile-menu" class="fixed inset-0 bg-blue-200 flex flex-col items-center justify-center gap-8 text-2xl transform -translate-y-full transition-transform duration-800 sm:hidden">
+            <div class="items-center justify-center flex flex-col">
+              <a class="m-4" href="./index.html">Hem</a>
+              <a class="m-4" href="./om_oss.html">Om oss</a>
+              <a class="m-4" href="./faq.html">Frågor</a>
+              <a class="m-4" href="./lokalen.html">Lokalen</a>
+              <a class="m-4" href="./skivor.html">Tidigare skivor</a>
+            </div>
+            <button onclick="window.location.href='./boka.html'" class="p-4 absolute bottom-8 bg-black font-bold text-white rounded-4xl w-40">Boka här</button>
+          </div>
+
+
+          <div class="hidden sm:flex gap-5 text-gray-200">
+            <a href="./index.html">Hem</a>
+            <a href="./om_oss.html">Om oss</a>
+            <a href="./faq.html">Frågor</a>
+            <a href="./lokalen.html">Lokalen</a>
+            <a href="./skivor.html">Tidigare skivor</a>
+          </div>
+        </nav>
+      </header>
+
+      <script>
+          const burger = document.getElementById('burger');
+          const mobileMenu = document.getElementById('mobile-menu');
+          let open = false;
+
+          burger.addEventListener('click', () => {
+            open = !open;
+
+      
+            const [line1, line2, line3] = burger.querySelectorAll('span');
+            if (open) {
+              line1.style.transform = 'rotate(45deg) translateY(8.5px)';
+              line2.style.opacity = '0';
+              line3.style.transform = 'rotate(-45deg) translateY(-9px)';
+            } else {
+              line1.style.transform = 'rotate(0) translateY(0)';
+              line2.style.opacity = '1';
+              line3.style.transform = 'rotate(0) translateY(0)';
+            }
+
+
+            if (open) {
+              mobileMenu.style.transform = 'translateY(100%)';
+            } else {
+              mobileMenu.style.transform = 'translateY(-100%)';
+            }
+          });
+      </script>
+
+
+      <header style="border-radius: 0px 0px 450px 450px / 0px 0px 70px 70px;" class="relative flex items-center justify-center mb-12 h-140 overflow-hidden index-header">
+        <div class="relative z-30 p-5 bg-opacity-50 text-center">
+  
+          <h1 style="line-height: normal; text-shadow: 3px 2px 0px red, 3px 4px 0px orange;" class="text-white font-bold relative inline-block text-[clamp(32px,10vw,64px)]">
+            <span class="after:content-[''] after:block after:h-1 after:bg-blue-200 after:rounded-full">
+              HORNHUSET
+            </span>
+          </h1>
+
+          <h1 class="text-white mb-4 text-[clamp(16px,3vw,34px)]">En kväll att minnas, för alla</h1>
+
+          <button onclick="window.location.href='./boka.html'" class="bg-blue-200 p-4 font-bold rounded-4xl w-40">Boka</button>
+        </div>
+        <video autoplay loop muted class="object-cover object-center w-full absolute" src="./videos/horn.mp4"></video>
+      </header>
+      <div class="text-center grid grid-cols-1 lg:grid-cols-3 gap-4 px-4">
+        <div class="mb-8">
+          <h2 class="text-xl font-bold"><i class="fa-solid fa-location-dot mt-1 me-1"></i><a target="_blank" class="underline" href="https://www.google.com/maps/search/?api=1&query=Långholmsgatan+15b,+Stockholm">Långhomsgatan 15b, Stockholm</a> <br> <span class="text-lg font-normal">Södermalm Honrstull</span></h2>
+        </div>
+        <div class="mb-8">
+            <h2 class="text-xl font-bold">Hur många?</h2>
+            <p class="text-sm">Middagsgäster: 70-110 gäster Eftersläppsbiljetter: 220- 350st (500st eftersläppsbiljett är möjligt om ni är 2 klasser som har skivan ihop)</p>
+        </div>
+        <div class="mb-32">
+          <h2 class="text-xl font-bold">Bokningsbara dagar</h2>
+          <p class="text-lg">Söndag-torsdag</p>
+        </div>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
