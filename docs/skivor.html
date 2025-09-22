@@ -81,9 +81,8 @@
                     <source src="./videos/skiva6.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div id="" class="overlay absolute inset-0 flex flex-col items-top justify-center cursor-pointer transition-opacity duration-500">
-                    <p style="line-height: normal; text-shadow: -3px -2px 0px orange, -5px -4px 0px rgb(255, 88, 51);" class="text-orange-500 text-6xl mb-4">ENTREE</p>
-                    
+                <div id="" class="overlay absolute inset-0 flex flex-col items-center justify-center">
+                    <p style="line-height: normal; text-shadow: -3px -2px 0px orange, -5px -4px 0px rgb(255, 88, 51);" class="text-orange-500 text-6xl mb-4">ENTREE</p>     
                 </div>
             </div>
             <div class="relative w-full max-w-lg max-h-150 mx-auto rounded-lg overflow-hidden my-5">
@@ -91,7 +90,7 @@
                     <source src="./videos/sittning.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div id="" class="overlay absolute inset-0 flex flex-col items-top justify-center cursor-pointer transition-opacity duration-500">
+                <div id="" class="overlay absolute inset-0 flex flex-col items-center justify-center cursor-pointer">
                     <p style="line-height: normal; text-shadow: 3px 2px 0px blue, 3px 4px 0px purple;" class="text-blue-200 text-6xl mb-4">SITTNING</p>
                     
                 </div>
@@ -101,45 +100,12 @@
                     <source src="./videos/fest.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div id="" class="absolute inset-0 flex flex-col items-top justify-center cursor-pointer transition-opacity duration-500">
+                <div id="" class="absolute inset-0 flex flex-col items-center justify-center cursor-pointer">
                     <p style="line-height: normal; text-shadow: -3px 2px 0px red, -5px 4px 0px orange;" class="text-orange-300 text-6xl mb-4">FEST</p>
                     
                 </div>
             </div>
         </div>
     </div>
-
-      
-    <script>
-        const videos = document.querySelectorAll('.video');
-
-        videos.forEach(video => {
-        const overlay = video.parentElement.querySelector('.overlay');
-
-    
-        overlay.addEventListener('click', () => {
-            video.classList.remove('brightness-50');
-            video.classList.add('brightness-100');
-
-            overlay.classList.add('opacity-0');
-            overlay.addEventListener('transitionend', () => {
-            overlay.style.display = 'none';
-            }, { once: true });
-
-            video.play();
-        });
-
-        
-        const showOverlay = () => {
-            overlay.style.display = 'flex';
-            overlay.classList.remove('opacity-0');
-            video.classList.remove('brightness-100');
-            video.classList.add('brightness-50');
-        };
-
-        video.addEventListener('ended', showOverlay);
-        video.addEventListener('pause', showOverlay);
-        });
-    </script>
   </body>
 </html>
