@@ -78,79 +78,35 @@
         <div class="grid grid-cols-1 lg:grid-cols-2">
 
             <div class="relative w-full max-w-lg max-h-150 mx-auto rounded-lg overflow-hidden my-5">
-                <video id="myVideo" class="video w-full object-cover object-center" muted>
+                <video id="myVideo" class="video w-full object-cover object-center" muted autoplay loop playsinline>
                     <source src="./videos/lokalen.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div id="overlay" class="overlay absolute inset-0 bg-black/50 flex flex-col items-center justify-center cursor-pointer transition-opacity duration-500">
+                <div id="overlay" class="overlay absolute inset-0 flex flex-col items-center justify-center cursor-pointer transition-opacity duration-500">
                     <p style="line-height: normal; text-shadow: 3px 2px 0px blue, 3px 4px 0px purple;" class="text-blue-200 text-center text-6xl mb-4">BLUE OYSTER</p>
-                    <button class="text-white text-4xl">►</button>
+                    
                 </div>
             </div>
             <div class="relative w-full max-w-lg mx-auto max-h-150 rounded-lg overflow-hidden my-5">
-                <video id="myVideo" class="video w-full object-cover object-center" muted>
-                    <source src="./videos/takbaren.mp4" type="video/mp4">
+                <video id="myVideo" class="video w-full object-cover object-center" muted autoplay loop playsinline>
+                    <source src="./videos/lokal-takbar.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div id="overlay" class="overlay absolute inset-0 bg-black/50 flex flex-col items-center justify-center cursor-pointer transition-opacity duration-500">
+                <div id="overlay" class="overlay absolute inset-0 flex flex-col items-center justify-center cursor-pointer transition-opacity duration-500">
                     <p style="line-height: normal; text-shadow: -3px 2px 0px red, -5px 4px 0px orange;" class="text-orange-300 text-6xl mb-4">TAKBAREN</p>
-                    <button class="text-white text-4xl">►</button>
                 </div>
             </div>
             <div class="relative w-full max-w-lg max-h-150 mx-auto rounded-lg overflow-hidden my-5">
-                <video id="myVideo" class="video w-full object-cover object-center" muted>
+                <video id="myVideo" class="video w-full object-cover object-center" muted autoplay loop playsinline>
                     <source src="./videos/lokalen3.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <div id="overlay" class="overlay absolute inset-0 bg-black/50 flex flex-col items-center justify-center cursor-pointer transition-opacity duration-500">
+                <div id="overlay" class="overlay absolute inset-0 flex flex-col items-center justify-center cursor-pointer transition-opacity duration-500">
                     <p style="line-height: normal; text-shadow: 3px -2px 0px pink, 4px -4px 0px beige;" class="text-violet-300 text-6xl mb-4">SITTNING</p>
-                    <button class="text-white text-4xl">►</button>
-                </div>
-            </div>
-                <div class="relative w-full max-w-lg max-h-150 mx-auto rounded-lg overflow-hidden my-5">
-                <video id="myVideo" class="video w-full object-cover object-center" muted>
-                    <source src="./videos/lokalen2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div id="overlay" class="overlay absolute inset-0 bg-black/50 flex flex-col items-center justify-center cursor-pointer transition-opacity duration-500">
-                    <p style="line-height: normal; text-shadow: -3px -2px 0px orange, -5px -4px 0px rgb(255, 184, 51);" class="text-orange-500 text-6xl mb-4">TAKBAREN</p>
-                    <button class="text-white text-4xl">►</button>
+                    
                 </div>
             </div>
         </div>
     </div>
-
-
-    
-    <script>
-        const videos = document.querySelectorAll('.video');
-
-        videos.forEach(video => {
-        const overlay = video.parentElement.querySelector('.overlay');
-
-        
-        overlay.addEventListener('click', () => {
-            video.classList.remove('brightness-50');
-            video.classList.add('brightness-100');
-
-            overlay.classList.add('opacity-0');
-            overlay.addEventListener('transitionend', () => {
-            overlay.style.display = 'none';
-            }, { once: true });
-
-            video.play();
-        });
-
-        const showOverlay = () => {
-            overlay.style.display = 'flex';
-            overlay.classList.remove('opacity-0');
-            video.classList.remove('brightness-100');
-            video.classList.add('brightness-50');
-        };
-
-        video.addEventListener('ended', showOverlay);
-        video.addEventListener('pause', showOverlay);
-        });
-    </script>
   </body>
 </html>
